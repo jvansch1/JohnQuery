@@ -4,18 +4,83 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="lib/master.css">
     <script src="lib/jquery_lite.js"></script>
   </head>
   <body>
-    <div>
-      JohnQuery
-    </div>
-    <div>
-      <ul id="list">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
-    </div>
+    <h1 id='title'>Painter</h1>
+    <section id='button-container'>
+      <button id="start">
+        Start
+      </button>
+      <button id="stop">
+        Stop
+      </button>
+      <button id='add-box'>
+        Add Box
+      </button>
+      <button id='remove-box'>
+        Remove Box
+      </button>
+    </section>
+      <section id='canvas'>
+        <div id='one'>
+        </div>
+      <section>
+    </section>
+    <script>
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function alterListItem() {
+        let listItems = $l("div").array;
+        let selected = listItems[Math.floor(Math.random() * listItems.length)]
+        selected.style.backgroundColor = getRandomColor();
+        selected.style.border = "1px solid black";
+      }
+
+      let intervalId;
+      $l("#start").on("click", function() {
+        intervalId = setInterval(alterListItem, 10);
+      })
+
+      $l("#stop").on("click", function() {
+        clearInterval(intervalId)
+      })
+
+      $l("#add-box").on("click", function() {
+        let newBox = document.createElement("div");
+        let divs = $l("div")
+        let lastDiv = divs.array[divs.array.length - 1]
+        newBox.style.width = `${lastDiv.clientWidth * 0.90}px`
+        newBox.style.height = `${lastDiv.clientWidth * 0.90}px`
+        $l(lastDiv).append(newBox);
+      })
+
+      $l("#remove-box").on("click", function() {
+        let divs = $l("div")
+        let divToRemove = divs.array[divs.array.length - 1]
+        if (divs.array.length === 1) {
+          return null
+        }
+        else {
+          $l(divToRemove).remove();
+        }
+      })
+
+      $l("li").on("mouseover", (e) => {
+        e.target.style.backgroundColor = getRandomColor();
+      })
+
+      $l("li").on("click", e => {
+        e.target.style.backgroundColor = 'white';
+      })
+    </script>
   </body>
 </html>
