@@ -9,7 +9,7 @@ JohnQuery is a JavaScript library which allows for easy DOM manipulation, event 
 
 JohnQuery's main function is a wrapper which will convert any argument entered into a DOMNodeCollection, a data-type which can be operated on by any other JohnQuery function. This wrapper provides the basis for the JohnQuery library.
 
-'''
+```
 const $l = function(arg) {
   if (arg instanceof Function) {
     handleFunction(arg)
@@ -24,4 +24,4 @@ const $l = function(arg) {
   }
 }
 
-'''
+```
