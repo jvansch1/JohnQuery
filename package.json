@@ -1,0 +1,18 @@
+{
+  "name": "JohnQuery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jquery_lite.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "webpack": "^2.2.1"
+  }
+}
