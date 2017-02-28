@@ -109,5 +109,41 @@ off(eventName) {
   })
 }
 
+```
 
+### AJAX
+
+JohnQuery also allows for users to make HTTP requests through AJAX. Defaults are provided for AJAX operations, but these can be manually overwritten by the user.
+
+```
+const setAJAXDefaults = function() {
+  const defaults = {
+    method: 'GET',
+    success: (text) => console.log(text),
+    error: (text) => console.log(text),
+    data: null,
+    dataType: 'JSON',
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+  }
+  return defaults
+}
+
+$l.ajax = function(url, options = {}) {
+
+  const defaults = setAJAXDefaults()
+  const params = $l.extend(defaults, options)
+  const xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      params.success(JSON.parse(xmlhttp.responseText))
+    }
+    else {
+      params.error(xmlhttp.responseText)
+    }
+  }
+
+  xmlhttp.open("GET", url, true)
+  xmlhttp.send()
+}
 ```
