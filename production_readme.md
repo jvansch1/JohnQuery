@@ -7,6 +7,8 @@ JohnQuery is a JavaScript library which allows for easy DOM manipulation, event 
 
 ## Key Features
 
+### DOM Manipulation
+
 JohnQuery's main function is a wrapper which will convert any argument entered into a DOMNodeCollection, a data-type which can be operated on by any other JohnQuery function. This wrapper provides the basis for the JohnQuery library.
 
 ```
@@ -87,3 +89,25 @@ removeClass(className) {
 ```
 
 In addition, JohnQuery provides functions to allow for easy traversal of the DOM. These include functions to to find the children, parent or descendants of a specified type of any target. This  element. This ensure that finding the correct DOM element is a simple process.
+
+### Event Handling
+
+JohnQuery also handles JavaScript events in order to create an interactive experience. Any JavaScript event can be added or removed through JohnQuery's on and off functions. JohnQuery saves any active events as a property on the DOM element, allowing for easy removal.
+
+```
+
+on(eventName, callback) {
+  this.array.forEach(element => {
+    element.addEventListener(eventName, callback)
+    element.eventName = callback
+  })
+}
+
+off(eventName) {
+  this.array.forEach(element => {
+    element.removeEventListener(eventName, element.eventName)
+  })
+}
+
+
+```
