@@ -5,7 +5,7 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="lib/master.css">
-    <script src="lib/JohnQuery.js"></script>
+    <script src="lib/johnQuery.js"></script>
   </head>
   <body>
     <h1 id='title'>Painter</h1>
@@ -21,6 +21,9 @@
       </button>
       <button id='remove-box'>
         Remove Box
+      </button>
+      <button id='add-gifs'>
+        Add Cat Gifs
       </button>
     </section>
       <section id='canvas'>
@@ -81,6 +84,30 @@
       $l("li").on("click", e => {
         e.target.style.backgroundColor = 'white';
       })
+
+      function placeHolder() {
+        return null;
+      }
+
+
+      $l('#add-gifs').on("click", () => {
+        // debugger
+        const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
+          $l("#canvas").innerHTML = "";
+          // debugger
+          if (success) {
+            success.data.map(gif => {
+              let span = document.createElement("span")
+              let iframe = document.createElement("iframe")
+              $l(iframe).attr("src", gif.embed_url);
+              debugger
+              span.appendChild(iframe)
+
+              $l("#canvas").append(span)
+            })
+          }
+        });
+      });
     </script>
   </body>
 </html>
