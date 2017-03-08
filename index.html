@@ -94,22 +94,22 @@
       }
 
 
-      $l('#add-gifs').on("click", () => {
-        debugger
-        const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
-          $l("#canvas").html('');
-          debugger
-          if (success) {
-            success.data.map(gif => {
-              let span = document.createElement("span")
-              let iframe = document.createElement("iframe")
-              $l(iframe).attr("src", gif.embed_url);
-              debugger
-              span.appendChild(iframe)
-              $l("#canvas").append(span)
-            })
-          }
-        });
+      // $l('#add-gifs').on("click", () => {
+      //   debugger
+      //   const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
+      //     $l("#canvas").html('');
+      //     debugger
+      //     if (success) {
+      //       success.data.map(gif => {
+      //         let span = document.createElement("span")
+      //         let iframe = document.createElement("iframe")
+      //         $l(iframe).attr("src", gif.embed_url);
+      //         debugger
+      //         span.appendChild(iframe)
+      //         $l("#canvas").append(span)
+      //       })
+      //     }
+      //   });
       });
     </script>
   </body>
