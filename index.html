@@ -29,7 +29,7 @@
       <section id='canvas'>
         <!-- <div id='one'>
         </div> -->
-      <section>
+      </section>
     </section>
     <script>
       function getRandomColor() {
@@ -95,7 +95,7 @@
 
 
       $l('#add-gifs').on("click", () => {
-        // debugger
+        debugger
         const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
           $l("#canvas").html('');
           debugger
