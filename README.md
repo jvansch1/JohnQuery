@@ -4,6 +4,150 @@
 
 JohnQuery is a JavaScript library which allows for easy DOM manipulation, event handling and AJAX. Users can easily append HTML elements to any existing DOM element, remove existing DOM elements, and add and remove CSS classes. In addition to editing the DOM, JohnQuery simplifies the process of traversing the DOM, providing functions to find the parent or children of any element or group of elements. While these are all things that possible using only JavaScript, JohnQuery streamlines these processes and greatly reduces the amount of code necessary.
 
+## API
+
+Below are all methods available to a JohnQuery wrapped object.
+
+If a string is passed in, will set the innerHTML of each element in the collection equal to the string. If no string is passed into this function will return the inner HTML of the first element in the collection.
+```
+  html(string) {
+    if (string !== undefined) {
+      this.array.forEach(element => {
+        element.innerHTML = string
+      })
+    }
+    else {
+      return this.array[0].innerHTML
+    }
+  }
+
+```
+
+Empties the inner HTML of each element in the collection.
+```
+  empty() {
+    this.array.forEach(element => {
+      element.innerHTML = ""
+    })
+  }
+```
+
+Removes an element from the DOM.
+```
+  remove() {
+    this.array.forEach(element => {
+      element.remove()
+    })
+  }
+```
+Appends an element to each element in the DOM collection.
+```
+  append(element) {
+    if (typeof element === "string") {
+      this.array.forEach(DOMElement => {
+        DOMElement.appendChild(document.createElement(element))
+      })
+    }
+    else if(element instanceof DOMNodeCollection) {
+      this.array.forEach(DOMElement => {
+        element.array.forEach(el2 => {
+          DOMElement.innerHTML += el2.innerHTML
+        })
+      })
+    }
+    else {
+      this.array.forEach(DOMelement => {
+        DOMelement.appendChild(element)
+      })
+    }
+  }
+```
+
+If a value is passed in, will set the the attribute on each HTML element in the collection. If no value is passed in, will return the value of passed in attribute of first element in DOM collection.
+```
+  attr(elementName, value) {
+    if (value === undefined) {
+      this.array[0].getAttribute()
+    }
+    else {
+      this.array.forEach(element => {
+        element.setAttribute(elementName, value)
+      })
+    }
+  }
+
+```
+Add class to each element in DOM collection.
+```
+  addClass(className) {
+    this.array.forEach(element => {
+      element.setAttribute("class", className)
+    })
+  }
+```
+Remove class from each element in the DOM collection.
+```
+  removeClass(className) {
+    this.array.forEach(element => {
+      element.classList.remove(className)
+    })
+  }
+```
+
+Gets the children of each element in the DOM collection.
+```
+  children() {
+    let childArray = [];
+    this.array.forEach(element => {
+      childArray = childArray.concat(Array.from(element.children))
+    });
+    return new DOMNodeCollection(childArray);
+  }
+```
+
+Gets the parent of each element in the DOM collection.
+```
+  parent() {
+    let parentArray = [];
+    this.array.forEach(element => {
+      parentArray.push(element.parentElement)
+    })
+    return new DOMNodeCollection(parentArray);
+  }
+```
+
+Gets the child elements matching the selector for each element in the DOM collection.
+```
+  find(selector) {
+    let descendentArray = [];
+    this.array.forEach(element => {
+      descendentArray = descendentArray.concat(Array.from(element.querySelectorAll(selector)))
+    })
+    return new DOMNodeCollection(descendentArray);
+  }
+```
+
+Add event handler to each element in DOM Collection.
+```
+  on(eventName, callback) {
+    this.array.forEach(element => {
+      element.addEventListener(eventName, callback)
+      element.eventName = callback
+    })
+  }
+```
+
+Remove event handler from each element in DOM collection.
+```
+  off(eventName) {
+    this.array.forEach(element => {
+      element.removeEventListener(eventName, element.eventName)
+    })
+  }
+}
+
+```
+
 
 ## Key Features
 
