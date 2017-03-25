@@ -8,7 +8,7 @@
     <script src="lib/johnQuery.js"></script>
   </head>
   <body>
-    <h1 id='title'>Painter</h1>
+    <h1 id='title'>JohnQuery</h1>
     <section id='button-container'>
       <button id="start">
         Start
@@ -22,13 +22,21 @@
       <button id='remove-box'>
         Remove Box
       </button>
-      <!-- <button id='add-gifs'>
+      <button id='add-gifs'>
         Add Cat Gifs
-      </button> -->
+      </button>
     </section>
       <section id='canvas'>
-        <!-- <div id='one'>
-        </div> -->
+        <ul id='header'>
+          <li>DOM Manipulation</li>
+          <li id='ajax'>AJAX<li>
+        </ul>
+        <section id='container'>
+          <div id='one'>
+          </div>
+          <section id=cats>
+          </section>
+        </section>
       </section>
     </section>
     <script>
@@ -48,25 +56,39 @@
         selected.style.border = "1px solid black";
       }
 
+      document.addEventListener("DOMContentLoaded", () => {
+        debugger
+        $l('#one').array[0].style.backgroundColor = getRandomColor();
+      })
+
       let intervalId;
       $l("#start").on("click", function() {
-        let one = document.createElement("div")
-        one.setAttribute("id", "one")
-        $l('#canvas').html('')
-        $l('#canvas').append(one)
-        intervalId = setInterval(alterListItem, 10);
+        if ($('#one').length === 0 || intervalId === undefined) {
+          intervalId = setInterval(alterListItem, 10);
+        }
+        // else if (intervalId === undefined){
+        //   intervalId = setInterval(alterListItem, 10);
+        // }
+
       })
 
       $l("#stop").on("click", function() {
         clearInterval(intervalId)
+        intervalId = undefined;
       })
 
       $l("#add-box").on("click", function() {
         let newBox = document.createElement("div");
         let divs = $l("div")
+        debugger
         let lastDiv = divs.array[divs.array.length - 1]
         newBox.style.width = `${lastDiv.clientWidth * 0.90}px`
         newBox.style.height = `${lastDiv.clientWidth * 0.90}px`
+        newBox.style.backgroundColor = getRandomColor();
+        newBox.style.border = "1px solid black";
+        newBox.style.marginTop = '4%';
+        newBox.style.marginBottom = '4%';
+        console.log(newBox);
         $l(lastDiv).append(newBox);
       })
 
@@ -81,36 +103,23 @@
         }
       })
 
-      $l("li").on("mouseover", (e) => {
-        e.target.style.backgroundColor = getRandomColor();
-      })
-
-      $l("li").on("click", e => {
-        e.target.style.backgroundColor = 'white';
-      })
-
-      function placeHolder() {
-        return null;
-      }
-
-
-      // $l('#add-gifs').on("click", () => {
-      //   debugger
-      //   const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
-      //     $l("#canvas").html('');
-      //     debugger
-      //     if (success) {
-      //       success.data.map(gif => {
-      //         let span = document.createElement("span")
-      //         let iframe = document.createElement("iframe")
-      //         $l(iframe).attr("src", gif.embed_url);
-      //         debugger
-      //         span.appendChild(iframe)
-      //         $l("#canvas").append(span)
-      //       })
-      //     }
-      //   });
-      // });
+      $l('#add-gifs').on("click", () => {
+        debugger
+        const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
+          // $l("#canvas").html('');
+          debugger
+          if (success) {
+            success.data.map(gif => {
+              let span = document.createElement("span")
+              let iframe = document.createElement("iframe")
+              $l(iframe).attr("src", gif.embed_url);
+              debugger
+              span.appendChild(iframe)
+              $l("#cats").append(span)
+            })
+          }
+        });
+      });
     </script>
   </body>
 </html>
