@@ -58,7 +58,6 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        debugger
         $l('#one').array[0].style.backgroundColor = getRandomColor();
       })
 
@@ -67,10 +66,6 @@
         if ($('#one').length === 0 || intervalId === undefined) {
           intervalId = setInterval(alterListItem, 10);
         }
-        // else if (intervalId === undefined){
-        //   intervalId = setInterval(alterListItem, 10);
-        // }
-
       })
 
       $l("#stop").on("click", function() {
@@ -81,7 +76,6 @@
       $l("#add-box").on("click", function() {
         let newBox = document.createElement("div");
         let divs = $l("div")
-        debugger
         let lastDiv = divs.array[divs.array.length - 1]
         newBox.style.width = `${lastDiv.clientWidth * 0.90}px`
         newBox.style.height = `${lastDiv.clientWidth * 0.90}px`
@@ -89,7 +83,6 @@
         newBox.style.border = "1px solid black";
         newBox.style.marginTop = '4%';
         newBox.style.marginBottom = '4%';
-        console.log(newBox);
         $l(lastDiv).append(newBox);
       })
 
@@ -105,16 +98,12 @@
       })
 
       $l('#add-gifs').on("click", () => {
-        debugger
         const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
-          // $l("#canvas").html('');
-          debugger
           if (success) {
             success.data.map(gif => {
               let span = document.createElement("span")
               let iframe = document.createElement("iframe")
               $l(iframe).attr("src", gif.embed_url);
-              debugger
               span.appendChild(iframe)
               $l("#cats").append(span)
             })
