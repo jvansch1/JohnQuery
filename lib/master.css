@@ -79,6 +79,12 @@ button:focus {
   margin: 0 auto;
 }
 
+#description {
+	width: 700px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
 #one {
 }
 
