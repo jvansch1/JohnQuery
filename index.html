@@ -5,6 +5,7 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="lib/master.css">
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
     <script src="lib/johnQuery.js"></script>
   </head>
   <body>
@@ -42,9 +43,9 @@
     </section>
     <script>
       function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++ ) {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
