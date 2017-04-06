@@ -27,7 +27,7 @@ body {
 	color: white;
 	background: black;
 	line-height: 1;
-  font-family: sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -83,9 +83,7 @@ button:focus {
 	width: 650px;
 	margin: 0 auto;
 	margin-bottom: 10px;
-}
-
-#one {
+	font-size: 20px;
 }
 
 #cats {
@@ -96,6 +94,7 @@ button:focus {
 
 #container {
 	display: flex;
+	margin-right: 20px;
 }
 
 .paint-list-item {

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans+Condensed:300" rel="stylesheet">
     <link rel="stylesheet" href="lib/master.css">
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
     <script src="lib/johnQuery.js"></script>
@@ -99,7 +100,7 @@
       })
 
       $l('#add-gifs').on("click", () => {
-        const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC', function(success) {
+        const success = $l.ajax('http://api.giphy.com/v1/gifs/search?q=funny+cat&limit=8&api_key=dc6zaTOxFJmzC', function(success) {
           if (success) {
             success.data.map(gif => {
               let span = document.createElement("span")
