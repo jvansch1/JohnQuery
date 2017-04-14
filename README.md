@@ -9,7 +9,7 @@ JohnQuery is a JavaScript library which allows for easy DOM manipulation, event 
 Below are all methods available to a JohnQuery wrapped object.
 
 If a string is passed in, will set the ```innerHTML``` of each element in the collection equal to the string. If no string is passed into this function will return the ```innerHTML``` of the first element in the collection.
-```
+```javascript
   html(string) {
     if (string !== undefined) {
       this.array.forEach(element => {
@@ -24,7 +24,7 @@ If a string is passed in, will set the ```innerHTML``` of each element in the co
 ```
 
 Empties the ```innerHTML``` of each element in the collection.
-```
+```javascript
   empty() {
     this.array.forEach(element => {
       element.innerHTML = ""
@@ -33,7 +33,7 @@ Empties the ```innerHTML``` of each element in the collection.
 ```
 
 Removes an element from the DOM.
-```
+```javascript
   remove() {
     this.array.forEach(element => {
       element.remove()
@@ -41,7 +41,7 @@ Removes an element from the DOM.
   }
 ```
 Appends an element to each element in the ```DOMCollection```.
-```
+```javascript
   append(element) {
     if (typeof element === "string") {
       this.array.forEach(DOMElement => {
@@ -64,7 +64,7 @@ Appends an element to each element in the ```DOMCollection```.
 ```
 
 If a value is passed in, will set the the attribute on each HTML element in the collection. If no value is passed in, will return the value of passed in attribute of first element in ```DOMCollection```.
-```
+```javascript
   attr(elementName, value) {
     if (value === undefined) {
       this.array[0].getAttribute()
@@ -78,7 +78,7 @@ If a value is passed in, will set the the attribute on each HTML element in the 
 
 ```
 Add class to each element in ```DOMCollection```.
-```
+```javascript
   addClass(className) {
     this.array.forEach(element => {
       element.setAttribute("class", className)
@@ -86,7 +86,7 @@ Add class to each element in ```DOMCollection```.
   }
 ```
 Remove class from each element in the ```DOMCollection```.
-```
+```javascript
   removeClass(className) {
     this.array.forEach(element => {
       element.classList.remove(className)
@@ -95,7 +95,7 @@ Remove class from each element in the ```DOMCollection```.
 ```
 
 Gets the children of each element in the ```DOMCollection```.
-```
+```javascript
   children() {
     let childArray = [];
     this.array.forEach(element => {
@@ -106,7 +106,7 @@ Gets the children of each element in the ```DOMCollection```.
 ```
 
 Gets the parent of each element in the ```DOMCollection```.
-```
+```javascript
   parent() {
     let parentArray = [];
     this.array.forEach(element => {
@@ -117,7 +117,7 @@ Gets the parent of each element in the ```DOMCollection```.
 ```
 
 Gets the child elements matching the selector for each element in the ```DOMCollection```.
-```
+```javascript
   find(selector) {
     let descendentArray = [];
     this.array.forEach(element => {
@@ -128,7 +128,7 @@ Gets the child elements matching the selector for each element in the ```DOMColl
 ```
 
 Add event handler to each element in ```DOMCollection```.
-```
+```javascript
   on(eventName, callback) {
     this.array.forEach(element => {
       element.addEventListener(eventName, callback)
@@ -138,7 +138,7 @@ Add event handler to each element in ```DOMCollection```.
 ```
 
 Remove event handler from each element in ```DOMCollection```.
-```
+```javascript
   off(eventName) {
     this.array.forEach(element => {
       element.removeEventListener(eventName, element.eventName)
@@ -155,7 +155,7 @@ Remove event handler from each element in ```DOMCollection```.
 
 JohnQuery's main function is a wrapper which will convert any argument entered into a ```DOMNodeCollection```, a data-type which can be operated on by any other JohnQuery function. This wrapper provides the basis for the JohnQuery library.
 
-```
+```javascript
 const $l = function(arg) {
   if (arg instanceof Function) {
     handleFunction(arg)
@@ -174,7 +174,7 @@ const $l = function(arg) {
 
 Once the target element has been made into a ```DOMNodeCollection``` object, it becomes very easy to manipulate the DOM with JohnQuery and make the user experience interactive and dynamic. Below are the functions responsible for the creation and removal of DOM elements. The append element will check for various input types and dispatch the correct action accordingly.
 
-```
+```javascript
 remove() {
   this.array.forEach(element => {
     element.remove()
@@ -205,7 +205,7 @@ append(element) {
 
 JohnQuery not only allows for DOM elements to be created and destroyed, but also gives the user the ability to edit existing DOM elements. The following gives the user the ability to add and remove CSS classes on any DOM element, as well as add other HTML attributes.
 
-```
+```javascript
 
 attr(elementName, value) {
   if (value === undefined) {
@@ -238,7 +238,7 @@ In addition, JohnQuery provides functions to allow for easy traversal of the DOM
 
 JohnQuery also handles JavaScript events in order to create an interactive experience. Any JavaScript event can be added or removed through JohnQuery's on and off functions. JohnQuery saves any active events as a property on the DOM element, allowing for easy removal.
 
-```
+```javascript
 
 on(eventName, callback) {
   this.array.forEach(element => {
@@ -259,7 +259,7 @@ off(eventName) {
 
 JohnQuery also allows for users to make HTTP requests through AJAX. Defaults are provided for AJAX operations, but these can be manually overwritten by the user.
 
-```
+```javascript
 const setAJAXDefaults = function() {
   const defaults = {
     method: 'GET',
